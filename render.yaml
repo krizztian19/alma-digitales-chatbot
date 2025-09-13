@@ -3,7 +3,6 @@ services:
     name: alma-digitales-chatbot
     env: docker
     dockerfilePath: ./Dockerfile
-    repo: https://github.com/TU_USUARIO/alma-digitales-chatbot
     branch: main
     region: oregon
     plan: free
@@ -21,11 +20,8 @@ services:
       - key: DB_TYPE
         value: sqlite
       - key: GOOGLE_API_KEY
-        generateValue: true
+        sync: false
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
-      - key: WEBHOOK_URL
-        sync: false
-    buildCommand: echo "Building N8N for Alma Digitales..."
+    buildCommand: echo "Building Alma Digitales N8N Chatbot..."
     startCommand: n8n start
-    healthCheckPath: /healthz
