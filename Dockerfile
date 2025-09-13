@@ -1,5 +1,5 @@
-# Dockerfile para N8N en Render - FUNCIONANDO
-FROM node:18-alpine
+# Dockerfile para N8N en Render - Node.js 20
+FROM node:20-alpine
 
 # Instalar dependencias del sistema necesarias
 RUN apk add --no-cache \
@@ -15,8 +15,9 @@ RUN apk add --no-cache \
 RUN addgroup -g 1000 -S node || true
 RUN adduser -u 1000 -S node -G node || true
 
-# Instalar N8N globalmente
+# Instalar N8N última versión
 RUN npm install -g n8n@latest
+
 # Crear directorio de trabajo
 WORKDIR /home/node/.n8n
 
