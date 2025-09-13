@@ -16,8 +16,7 @@ RUN addgroup -g 1000 -S node || true
 RUN adduser -u 1000 -S node -G node || true
 
 # Instalar N8N globalmente
-RUN npm install -g n8n@1.15.1
-
+RUN npm install -g n8n@latest
 # Crear directorio de trabajo
 WORKDIR /home/node/.n8n
 
