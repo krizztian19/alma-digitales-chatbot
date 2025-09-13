@@ -1,29 +1,17 @@
 {
   "name": "alma-digitales-chatbot",
   "version": "1.0.0",
-  "description": "Chatbot personalizado para Alma Digitales usando N8N",
+  "description": "Chatbot N8N para Alma Digitales",
   "main": "index.js",
   "scripts": {
-    "start": "./start.sh",
-    "dev": "n8n start --tunnel",
-    "build": "echo 'Building N8N chatbot for Alma Digitales...'",
-    "postinstall": "echo 'Installation complete'"
+    "start": "n8n start",
+    "dev": "n8n start",
+    "build": "echo 'Build complete for Alma Digitales'"
   },
-  "keywords": [
-    "chatbot",
-    "n8n",
-    "videojuegos",
-    "alma-digitales",
-    "render"
-  ],
-  "author": "Alma Digitales",
-  "license": "MIT",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=18.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tu-usuario/alma-digitales-chatbot.git"
-  }
+  "keywords": ["n8n", "chatbot", "alma-digitales"],
+  "author": "Alma Digitales",
+  "license": "MIT"
 }
