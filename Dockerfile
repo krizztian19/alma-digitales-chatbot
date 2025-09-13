@@ -1,24 +1,47 @@
-# Dockerfile para N8N en Render
-FROM n8nio/n8n:latest
+# Dockerfile para N8N en Render - FUNCIONANDO
+FROM node:18-alpine
 
-# Variables de entorno
+# Instalar dependencias del sistema necesarias
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    git \
+    bash \
+    curl \
+    wget
+
+# Crear usuario node si no existe
+RUN addgroup -g 1000 -S node || true
+RUN adduser -u 1000 -S node -G node || true
+
+# Instalar N8N globalmente
+RUN npm install -g n8n@1.15.1
+
+# Crear directorio de trabajo
+WORKDIR /home/node/.n8n
+
+# Configurar permisos
+RUN chown -R node:node /home/node
+
+# Cambiar a usuario node
+USER node
+
+# Variables de entorno para N8N
 ENV N8N_HOST=0.0.0.0
 ENV N8N_PORT=10000
 ENV N8N_PROTOCOL=https
 ENV NODE_ENV=production
-ENV WEBHOOK_URL=https://alma-digitales-chatbot.onrender.com/webhook
-ENV N8N_EDITOR_BASE_URL=https://alma-digitales-chatbot.onrender.com
-
-# Crear directorio de trabajo
-USER root
-RUN mkdir -p /home/node/.n8n
-RUN chown -R node:node /home/node/.n8n
-
-# Volver al usuario node
-USER node
+ENV N8N_BASIC_AUTH_ACTIVE=false
+ENV DB_TYPE=sqlite
+ENV N8N_DISABLE_UI=false
+ENV N8N_METRICS=false
 
 # Exponer puerto
 EXPOSE 10000
 
-# Comando de inicio
+# Verificar que N8N esté instalado correctamente
+RUN n8n --version
+
+# Comando de inicio directo
 CMD ["n8n", "start"]
