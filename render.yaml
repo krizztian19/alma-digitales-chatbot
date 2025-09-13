@@ -16,13 +16,16 @@ services:
         value: https
       - key: NODE_ENV
         value: production
-      - key: WEBHOOK_URL
-        value: https://alma-digitales-chatbot.onrender.com/webhook
-      - key: N8N_EDITOR_BASE_URL
-        value: https://alma-digitales-chatbot.onrender.com
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: false
+      - key: DB_TYPE
+        value: sqlite
       - key: GOOGLE_API_KEY
         generateValue: true
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
+      - key: WEBHOOK_URL
+        sync: false
     buildCommand: echo "Building N8N for Alma Digitales..."
     startCommand: n8n start
+    healthCheckPath: /healthz
